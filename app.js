@@ -28,6 +28,23 @@ app.use('/api/v1/', miscellaneousRoutes);
  
 
 app.all('*', (req, res) => {
+    res.status(404).json({
+        success: false,
+        message: "LMS Learning Platform: Page Not Found",
+        error: {
+            statusCode: 404,
+            customMessage: "Looks like you've wandered into uncharted territory! 📚",
+            helpText: [
+                "Don't worry, even the best students take wrong turns sometimes!",
+                "Here's what you can try:",
+                "• Check if the URL is correct",
+                "• Return to the homepage",
+                "• Browse our course catalog",
+                "• Contact our support team if you need help"
+            ].join("\\n"),
+            isTemporary: false
+        }
+    });
     res.status(404).send('OOPS!! 404 page not found');
 })
 
